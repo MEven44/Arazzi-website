@@ -1,0 +1,82 @@
+/* ---- Arazzi Base CSS (no Tailwind) ---- */
+:root {
+  --black: #0a0a0a;
+  --brown: #5c4033;
+  --yellow: #f2c94c;
+  --olive: #6b8e23;
+
+  --fg: #fff;
+  --bg: var(--black);
+  --maxw: 72rem; /* ~ 1152px */
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  line-height: 1.5;
+}
+
+h1, h2, h3, .display { font-family: "Playfair Display", serif; }
+
+.container { max-width: var(--maxw); margin: 0 auto; padding: 0 16px; }
+
+a { color: var(--yellow); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Simple UI primitives */
+.card {
+  border: 1px solid color-mix(in oklab, var(--olive) 30%, transparent);
+  border-radius: var(--radius);
+  padding: 20px;
+  background: color-mix(in oklab, var(--black) 96%, white);
+}
+
+.btn {
+  display: inline-block; padding: 10px 16px; border-radius: 10px;
+  background: var(--olive); color: #111; font-weight: 600; border: none; cursor: pointer;
+}
+.btn:hover { filter: brightness(1.05); }
+
+.nav {
+  position: sticky; top: 0; backdrop-filter: blur(6px);
+  background: color-mix(in oklab, var(--black) 85%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--olive) 30%, transparent);
+}
+.nav-inner {
+  height: 56px; display: flex; align-items: center; justify-content: space-between;
+}
+.nav a { color: #fff; opacity: .85; margin-left: 10px; padding: 6px 10px; border-radius: 8px; font-weight: 600; }
+.nav a.active { background: var(--olive); color: #111; opacity: 1; }
+.nav a:hover { opacity: 1; text-decoration: none; }
+
+.footer {
+  border-top: 1px solid color-mix(in oklab, var(--olive) 30%, transparent);
+  padding: 24px 0; margin-top: 48px; font-size: 0.95rem; opacity: .85;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+}
+
+/* Layout helpers */
+.stack-20 > * + * { margin-top: 20px; }
+.grid-2 {
+  display: grid; gap: 20px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 800px) {
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+}
+
+/* Media boxes */
+.aspect-video {
+  position: relative; width: 100%; padding-top: 56.25%;
+  border: 1px solid color-mix(in oklab, var(--olive) 30%, transparent);
+  border-radius: var(--radius); overflow: hidden;
+  background: #111;
+}
+.aspect-video > * { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.badge { color: var(--yellow); text-transform: uppercase; letter-spacing: .06em; font-size: .8rem; }
