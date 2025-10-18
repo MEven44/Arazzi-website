@@ -1,15 +1,13 @@
 import { useState } from "react";
 import { extractYouTubeId } from "../utils/youtube";
 
-const KEY = "heroVideoUrl";
-
 export default function Admin() {
-  const [url, setUrl] = useState(localStorage.getItem(KEY) || "");
+  const [url, setUrl] = useState("");
   const videoId = extractYouTubeId(url);
 
   const applyHero = () => {
-    localStorage.setItem(KEY, url.trim());
-    // redirect to home with a full refresh
+    // localStorage write removed — hero video is now fixed in the site code
+    // Redirect to home to reflect any changes (no shared state is saved)
     window.location.href = "/";
   };
 
@@ -65,10 +63,9 @@ export default function Admin() {
           )}
         </div>
 
-        {/* ✅ This button block is now correctly inside the <section> */}
         <div style={{ marginTop: 12 }}>
           <button className="btn" onClick={applyHero} disabled={!videoId}>
-            Update Hero
+            Update Hero (preview only — no persistence)
           </button>
         </div>
       </section>
